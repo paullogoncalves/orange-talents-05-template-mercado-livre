@@ -4,11 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
-import com.oragentalent5.mercadolivre.domain.ClearPassword;
 import com.oragentalent5.mercadolivre.domain.Usuario;
 import com.oragentalent5.mercadolivre.resources.validation.UniqueValue;
 
@@ -22,13 +19,34 @@ public class UsuarioFormDTO {
 	@Min(6)
 	private String senha;
 	
+	public UsuarioFormDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public UsuarioFormDTO(@NotEmpty @Email String login, @NotEmpty @Min(6) String senha) {
 		super();
 		this.login = login;
 		this.senha = senha;
+		
 	}
-	
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public Usuario toEntity() {
-		return new Usuario(this.login, new ClearPassword(this.senha), LocalDateTime.now());
+		return new Usuario(this.login, this.senha, LocalDateTime.now());
 	}
 }

@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Usuario {
 
@@ -26,18 +28,19 @@ public class Usuario {
 	@NotEmpty
 	@Email
 	private String login;
-	
+
 	@NotEmpty
 	@Length(min = 6)
+	@JsonIgnore
 	private String senha;
 	@NotNull
 	private LocalDateTime instante;
 
-	public Usuario(@NotEmpty @Email String login, @NotEmpty @Min(6) ClearPassword password,
+	public Usuario(@NotEmpty @Email String login, @NotEmpty @Min(6) String senha,
 			@NotNull @Future LocalDateTime instante) {
 		super();
 		this.login = login;
-		this.senha = password.hash();
+		this.senha = senha;
 		this.instante = instante;
 	}
 
@@ -49,6 +52,10 @@ public class Usuario {
 		return login;
 	}
 
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -56,7 +63,5 @@ public class Usuario {
 	public LocalDateTime getInstante() {
 		return instante;
 	}
-	
-	
 
 }

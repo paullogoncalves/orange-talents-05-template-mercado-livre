@@ -1,10 +1,13 @@
 package com.oragentalent5.mercadolivre.resources;
 
+import java.time.LocalDateTime;
+
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +22,16 @@ import com.oragentalent5.mercadolivre.repositories.UsuarioRepository;
 public class UsuarioController {
 	
 	@Autowired
+	private BCryptPasswordEncoder enc;
+	
+	@Autowired
 	private UsuarioRepository usuarioRepo;
 	
 	@Transactional
 	@PostMapping
 	public ResponseEntity<Usuario> login(@Valid @RequestBody UsuarioFormDTO dto) {
-		Usuario usuario = dto.toEntity();
+		Usuario usuario = new Usuario(dto.getLogin(), enc.encode(dto.getSenha()), LocalDateTime.now());
+		
 		usuarioRepo.save(usuario);
 		
 		return ResponseEntity.ok().body(usuario);

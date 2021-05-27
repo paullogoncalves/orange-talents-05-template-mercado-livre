@@ -1,6 +1,7 @@
 package com.oragentalent5.mercadolivre;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,7 +32,9 @@ public class MercadoLivreApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Usuario user = new Usuario("paulo@gmail.com", pe.encode("1234567"), LocalDateTime.now());
-		repo.save(user);
+		Usuario user1 = new Usuario("jhondoe@gmail.com", pe.encode("12345678"), LocalDateTime.now());
+		Usuario user2 = new Usuario("joaosembraco@gmail.com", pe.encode("123456789"), LocalDateTime.now());
+		repo.saveAll(Arrays.asList(user, user1, user2));
 		
 		Categoria categoria = new Categoria("Eletronicos");
 		categoRepo.save(categoria);

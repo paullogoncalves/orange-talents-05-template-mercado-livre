@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.oragentalent5.mercadolivre.dto.CaracteristicasFormDTO;
@@ -33,21 +35,21 @@ public class Produto {
 	private int quantidade;
 
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
-	private Set<CaracteristacaProduto> caracteristicas = new HashSet<>();
-
+	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 
 	private String descricao;
-
 	@ManyToOne
 	private Categoria categoria;
-
 	@ManyToOne
 	private Usuario usuario;
 
 	private LocalDateTime instante;
+
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<ImagemProduto> imagens = new HashSet<>();
 	
+	@Deprecated
 	public Produto() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Produto(String nome, BigDecimal valor, int quantidade, String descricao, Categoria categoria,
@@ -88,6 +90,20 @@ public class Produto {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	public void associaImagens(Set<String> links) {
+		Set<ImagemProduto> imagens = links.stream()
+				.map(link -> new ImagemProduto(this, link))
+				.collect(Collectors.toSet());
+		
+		this.imagens.addAll(imagens);
+		
+	}
+
+	public boolean pertenceAoUsuario(Usuario usuarioRequest) {
+		return this.usuario.equals(usuarioRequest);
+		
 	}
 
 }

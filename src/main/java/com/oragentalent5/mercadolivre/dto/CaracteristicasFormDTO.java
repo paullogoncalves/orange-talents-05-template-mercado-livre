@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.oragentalent5.mercadolivre.domain.CaracteristacaProduto;
+import com.oragentalent5.mercadolivre.domain.CaracteristicaProduto;
 import com.oragentalent5.mercadolivre.domain.Produto;
 
 public class CaracteristicasFormDTO {
@@ -68,8 +68,8 @@ public class CaracteristicasFormDTO {
 		return true;
 	}
 
-	public CaracteristacaProduto toEntity(@NotNull @Valid Produto produto) {
-		return new CaracteristacaProduto(nome, descricao, produto);
+	public CaracteristicaProduto toEntity(@NotNull @Valid Produto produto) {
+		return new CaracteristicaProduto(nome, descricao, produto);
 	}
 	
 	

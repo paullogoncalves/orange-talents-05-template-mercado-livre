@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class CaracteristacaProduto {
+public class CaracteristicaProduto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +27,11 @@ public class CaracteristacaProduto {
 	@ManyToOne
 	private Produto produto;
 
-	public CaracteristacaProduto() {
+	public CaracteristicaProduto() {
 
 	}
 
-	public CaracteristacaProduto(@NotBlank String nome, @NotBlank String descricao, @NotNull @Valid Produto produto) {
+	public CaracteristicaProduto(@NotBlank String nome, @NotBlank String descricao, @NotNull @Valid Produto produto) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
@@ -56,7 +56,7 @@ public class CaracteristacaProduto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CaracteristacaProduto other = (CaracteristacaProduto) obj;
+		CaracteristicaProduto other = (CaracteristicaProduto) obj;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;

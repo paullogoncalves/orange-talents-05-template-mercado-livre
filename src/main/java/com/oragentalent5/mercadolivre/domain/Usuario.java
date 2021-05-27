@@ -1,11 +1,14 @@
 package com.oragentalent5.mercadolivre.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
@@ -31,6 +34,7 @@ public class Usuario {
 	@Length(min = 6)
 	@JsonIgnore
 	private String senha;
+		
 	@NotNull
 	private LocalDateTime instante;
 	

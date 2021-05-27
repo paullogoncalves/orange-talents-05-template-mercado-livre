@@ -24,8 +24,6 @@ import com.oragentalent5.mercadolivre.resources.validation.ProibeCaracteristicas
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-	@Value("${spring.jpa.open-in-view}")
-	private String secret;
 	
 	@PersistenceContext
 	private EntityManager manager;

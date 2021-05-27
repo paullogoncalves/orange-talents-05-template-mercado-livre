@@ -66,7 +66,7 @@ public class Produto {
 				.addAll(caracteristicas.stream().map(cara -> cara.toEntity(this)).collect(Collectors.toSet()));
 	}
 
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

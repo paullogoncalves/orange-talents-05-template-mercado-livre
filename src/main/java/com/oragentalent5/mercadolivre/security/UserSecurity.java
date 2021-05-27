@@ -15,10 +15,10 @@ public class UserSecurity implements UserDetails {
 	public UserSecurity() {
 	}
 
-	public UserSecurity(Long id, String email, String login) {
+	public UserSecurity(Long id, String login, String senha) {
 		this.id = id;
-		this.login = email;
-		this.senha = login;
+		this.login = login;
+		this.senha = senha;
 	}
 
 	public Long getId() {
@@ -27,7 +27,6 @@ public class UserSecurity implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

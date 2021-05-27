@@ -6,14 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.oragentalent5.mercadolivre.domain.Categoria;
 import com.oragentalent5.mercadolivre.domain.Usuario;
+import com.oragentalent5.mercadolivre.repositories.CategoriaRepository;
 import com.oragentalent5.mercadolivre.repositories.UsuarioRepository;
 
 @SpringBootApplication
 public class MercadoLivreApplication implements CommandLineRunner {
 	@Autowired
 	private UsuarioRepository repo;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
+	@Autowired
+	private CategoriaRepository categoRepo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MercadoLivreApplication.class, args);
@@ -21,9 +30,12 @@ public class MercadoLivreApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Usuario user = new Usuario("paulo@gmail.com", "1234567", LocalDateTime.now());
-		
+		Usuario user = new Usuario("paulo@gmail.com", pe.encode("1234567"), LocalDateTime.now());
 		repo.save(user);
+		
+		Categoria categoria = new Categoria("Eletronicos");
+		categoRepo.save(categoria);
+		
 		
 		
 		

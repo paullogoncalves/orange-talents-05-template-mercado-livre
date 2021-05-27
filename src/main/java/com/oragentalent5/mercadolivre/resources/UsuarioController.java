@@ -31,10 +31,9 @@ public class UsuarioController {
 	@PostMapping
 	public ResponseEntity<Usuario> login(@Valid @RequestBody UsuarioFormDTO dto) {
 		Usuario usuario = new Usuario(dto.getLogin(), enc.encode(dto.getSenha()), LocalDateTime.now());
-		
 		usuarioRepo.save(usuario);
 		
-		return ResponseEntity.ok().body(usuario);
+		return ResponseEntity.ok().build();
 	}
 
 }

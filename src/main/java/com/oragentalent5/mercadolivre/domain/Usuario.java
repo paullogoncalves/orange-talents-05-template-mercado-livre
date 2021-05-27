@@ -9,12 +9,10 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -35,6 +33,9 @@ public class Usuario {
 	private String senha;
 	@NotNull
 	private LocalDateTime instante;
+	
+	public Usuario() {
+	}
 
 	public Usuario(@NotEmpty @Email String login, @NotEmpty @Min(6) String senha,
 			@NotNull @Future LocalDateTime instante) {
@@ -50,10 +51,6 @@ public class Usuario {
 
 	public String getLogin() {
 		return login;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public String getSenha() {

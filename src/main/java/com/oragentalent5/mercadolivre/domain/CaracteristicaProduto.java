@@ -37,7 +37,40 @@ public class CaracteristicaProduto {
 		this.descricao = descricao;
 		this.produto = produto;
 	}
+	
+	
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+	
+	
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	 
 	@Override
 	public int hashCode() {
 		final int prime = 31;

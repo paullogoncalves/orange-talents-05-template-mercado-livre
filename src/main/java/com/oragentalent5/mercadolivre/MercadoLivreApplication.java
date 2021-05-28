@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.oragentalent5.mercadolivre.domain.Categoria;
 import com.oragentalent5.mercadolivre.domain.Usuario;
+import com.oragentalent5.mercadolivre.email.EnvioEmailWork;
+import com.oragentalent5.mercadolivre.email.MockEmailWork;
 import com.oragentalent5.mercadolivre.repositories.CategoriaRepository;
 import com.oragentalent5.mercadolivre.repositories.UsuarioRepository;
 
@@ -38,10 +41,12 @@ public class MercadoLivreApplication implements CommandLineRunner {
 		
 		Categoria categoria = new Categoria("Eletronicos");
 		categoRepo.save(categoria);
-		
-		
-		
-		
+
+	}
+	
+	@Bean
+	public EnvioEmailWork envioEmailWork() {
+		return new MockEmailWork();
 	}
 
 }

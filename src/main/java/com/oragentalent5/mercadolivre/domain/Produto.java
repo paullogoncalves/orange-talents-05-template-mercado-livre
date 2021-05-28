@@ -91,6 +91,48 @@ public class Produto {
 			return false;
 		return true;
 	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public Set<CaracteristicaProduto> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public LocalDateTime getInstante() {
+		return instante;
+	}
+
+	public Set<ImagemProduto> getImagens() {
+		return imagens;
+	}
 
 	public void associaImagens(Set<String> links) {
 		Set<ImagemProduto> imagens = links.stream()
@@ -106,4 +148,15 @@ public class Produto {
 		
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Produto [nome=");
+		builder.append(nome);
+		builder.append(", usuario=");
+		builder.append(usuario.getLogin());
+		builder.append("]");
+		return builder.toString();
+	}
+	
 }

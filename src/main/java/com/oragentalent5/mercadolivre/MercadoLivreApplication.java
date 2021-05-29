@@ -1,5 +1,6 @@
 package com.oragentalent5.mercadolivre;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.oragentalent5.mercadolivre.domain.Categoria;
+import com.oragentalent5.mercadolivre.domain.Produto;
 import com.oragentalent5.mercadolivre.domain.Usuario;
 import com.oragentalent5.mercadolivre.email.EnvioEmailWork;
 import com.oragentalent5.mercadolivre.email.MockEmailWork;
@@ -41,6 +43,9 @@ public class MercadoLivreApplication implements CommandLineRunner {
 		
 		Categoria categoria = new Categoria("Eletronicos");
 		categoRepo.save(categoria);
+		
+		//Produto produto = new Produto("Iphone", new BigDecimal("5000"), 10, "Iphone com tela mais fina", categoria, user1, null, null)
+		
 
 	}
 	

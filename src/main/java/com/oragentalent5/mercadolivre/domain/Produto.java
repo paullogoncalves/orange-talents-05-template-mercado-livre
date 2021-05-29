@@ -21,6 +21,8 @@ import javax.persistence.OrderBy;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import org.springframework.util.Assert;
+
 import com.oragentalent5.mercadolivre.dto.CaracteristicasFormDTO;
 
 @Entity
@@ -165,6 +167,16 @@ public class Produto {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	public boolean abateDoEstoque(int quantidade) {
+		Assert.isTrue(quantidade > 0, "A quantidade deve ser maior que zero para o abatimento" + quantidade);
+		if (quantidade <= this.quantidade) {
+			this.quantidade -= quantidade;
+			return true;
+		}
+		return false;
+		
 	}
 
 	

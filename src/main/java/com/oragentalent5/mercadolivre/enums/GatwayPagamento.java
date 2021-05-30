@@ -1,4 +1,4 @@
-package com.oragentalent5.mercadolivre;
+package com.oragentalent5.mercadolivre.enums;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;

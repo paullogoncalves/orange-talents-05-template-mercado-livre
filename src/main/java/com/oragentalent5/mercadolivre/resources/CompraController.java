@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.oragentalent5.mercadolivre.GatwayPagamento;
 import com.oragentalent5.mercadolivre.domain.Compra;
 import com.oragentalent5.mercadolivre.domain.Produto;
 import com.oragentalent5.mercadolivre.domain.Usuario;
 import com.oragentalent5.mercadolivre.dto.CompraFormDTO;
+import com.oragentalent5.mercadolivre.enums.GatwayPagamento;
 import com.oragentalent5.mercadolivre.repositories.CompraRepository;
 import com.oragentalent5.mercadolivre.repositories.ProdutoRepository;
 import com.oragentalent5.mercadolivre.repositories.UsuarioRepository;

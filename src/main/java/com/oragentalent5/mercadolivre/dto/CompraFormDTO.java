@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import com.oragentalent5.mercadolivre.GatwayPagamento;
 import com.oragentalent5.mercadolivre.domain.Produto;
 import com.oragentalent5.mercadolivre.domain.Usuario;
+import com.oragentalent5.mercadolivre.enums.GatwayPagamento;
 
 public class CompraFormDTO {
 

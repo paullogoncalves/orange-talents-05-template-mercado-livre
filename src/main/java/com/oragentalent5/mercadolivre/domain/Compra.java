@@ -1,5 +1,10 @@
 package com.oragentalent5.mercadolivre.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,8 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import com.oragentalent5.mercadolivre.GatwayPagamento;
+import com.oragentalent5.mercadolivre.dto.RetornoPagSeguroDTO;
+import com.oragentalent5.mercadolivre.enums.GatwayPagamento;
+
+import io.jsonwebtoken.lang.Assert;
 
 @Entity
 public class Compra {
@@ -27,9 +36,12 @@ public class Compra {
 	
 	@Enumerated(EnumType.ORDINAL)
 	private GatwayPagamento gatwayPagamento;
+
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "compra")
+	private Set<Transacao> transacoes = new HashSet<>();
 	
 	public Compra() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Compra(Produto produto, int quantidade, Usuario usuario, GatwayPagamento gatwayPagamento) {
@@ -61,6 +73,26 @@ public class Compra {
 
 	public GatwayPagamento getGatwayPagamento() {
 		return gatwayPagamento;
+	}
+
+	public void addTransacao(RetornoGatwayPagamento dto) {
+		Transacao novaTransacao = dto.toTransacao(this);
+		
+		Assert.isTrue(!this.transacoes.contains(novaTransacao), "ja existe essa transação");
+		
+		Assert.isTrue(transacoesConcluidasComSucesso().isEmpty(), "Essa compra ja foi concluida com sucesso ");
+		
+		this.transacoes.add(novaTransacao);
+		
+	}
+
+	private Set<Transacao> transacoesConcluidasComSucesso() {
+		Set<Transacao> transacoesConcluidasComSucesso = this.transacoes.stream().filter(Transacao:: concluidaComSucesso).collect(Collectors.toSet());
+		return transacoesConcluidasComSucesso;
+	}
+
+	public boolean processadaComSucesso() {
+		return !transacoesConcluidasComSucesso().isEmpty();
 	}
 	
 	

@@ -1,6 +1,5 @@
 package com.oragentalent5.mercadolivre;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -12,9 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.oragentalent5.mercadolivre.domain.Categoria;
-import com.oragentalent5.mercadolivre.domain.Produto;
 import com.oragentalent5.mercadolivre.domain.Usuario;
-import com.oragentalent5.mercadolivre.email.EnvioEmailWork;
+import com.oragentalent5.mercadolivre.email.EnvioEmailNotaFiscalWork;
 import com.oragentalent5.mercadolivre.email.MockEmailWork;
 import com.oragentalent5.mercadolivre.repositories.CategoriaRepository;
 import com.oragentalent5.mercadolivre.repositories.UsuarioRepository;
@@ -50,7 +48,7 @@ public class MercadoLivreApplication implements CommandLineRunner {
 	}
 	
 	@Bean
-	public EnvioEmailWork envioEmailWork() {
+	public EnvioEmailNotaFiscalWork envioEmailNotaFiscalWork() {
 		return new MockEmailWork();
 	}
 

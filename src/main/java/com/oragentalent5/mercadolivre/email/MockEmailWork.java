@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 
-public class MockEmailWork extends EnvioEmailAbstract {
+import com.oragentalent5.mercadolivre.domain.Compra;
+
+public class MockEmailWork extends NFEmailAbstract {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MockEmailWork.class);
 	
@@ -15,5 +17,9 @@ public class MockEmailWork extends EnvioEmailAbstract {
 		LOG.info("Email enviado!");
 		
 	}
+
+
+
+
 
 }

@@ -15,7 +15,6 @@ import com.oragentalent5.mercadolivre.domain.Pergunta;
 import com.oragentalent5.mercadolivre.domain.Produto;
 import com.oragentalent5.mercadolivre.domain.Usuario;
 import com.oragentalent5.mercadolivre.dto.PerguntaFormDTO;
-import com.oragentalent5.mercadolivre.email.EnvioEmailWork;
 import com.oragentalent5.mercadolivre.repositories.PerguntaRepository;
 import com.oragentalent5.mercadolivre.repositories.ProdutoRepository;
 import com.oragentalent5.mercadolivre.repositories.UsuarioRepository;
@@ -33,8 +32,8 @@ public class PerguntaController {
 	@Autowired
 	private PerguntaRepository perguntaRepo;
 	
-	@Autowired
-	private EnvioEmailWork emailWork;
+//	@Autowired
+//	private EnvioEmailWork emailWork;
 	
 	@Transactional
 	@PostMapping("/{id}/perguntas")
@@ -44,7 +43,7 @@ public class PerguntaController {
 		Pergunta pergunta = dto.toEntity(produto, user);
 		perguntaRepo.save(pergunta);
 		
-		emailWork.sendPerguntaEmail(pergunta);
+		//emailWork.sendPerguntaEmail(pergunta);
 		return ResponseEntity.ok().body(pergunta);
 	}
 

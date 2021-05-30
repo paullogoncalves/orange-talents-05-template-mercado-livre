@@ -55,22 +55,7 @@ public class CaracteristicaProduto {
 	public Produto getProduto() {
 		return produto;
 	}
-	
-	
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	
-	 
+		 
 	@Override
 	public int hashCode() {
 		final int prime = 31;

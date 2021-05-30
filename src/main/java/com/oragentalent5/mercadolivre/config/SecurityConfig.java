@@ -35,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private Environment env;
 
 	private static final String[] PUBLIC_MATCHERS = {"/h2-console/**", "/login/**", "/categorias/**",
-			"/produtos/**", "/opinioes/**", "/compras/**" };
+			"/produtos/**", "/opinioes/**", "/compras/**", "/retorno-pagseguro/**", "/retorno-pagseguro/**",
+			"/notas-fiscais/**", "/ranking/**"	};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
